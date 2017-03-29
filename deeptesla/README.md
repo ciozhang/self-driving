@@ -1,4 +1,4 @@
-我的模型可在https://drive.google.com/open?id=0B_jeca3axBM9UnBmVWVXWXlYTEE 找到
+我的模型可在https://pan.baidu.com/s/1hsC8iRa 找到
 # Deep Learning for Self-Driving Cars : DeepTesla
 http://selfdrivingcars.mit.edu/deeptesla/
   
