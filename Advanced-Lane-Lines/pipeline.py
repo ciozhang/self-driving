@@ -32,6 +32,20 @@ def select_line_color(image):
     mask = cv2.bitwise_or(yellow_mask,white_mask)
     return cv2.bitwise_and(image,image,mask=mask)
 
+def select_line_color2(image):
+    cvt_image = cv2.cvtColor(image,cv2.COLOR_BGR2HLS) # h l s
+    # yellow mask
+    yellow_lower = np.uint8([10,0,100]) # h l s
+    yellow_upper = np.uint8([40,255,255]) 
+    yellow_mask = cv2.inRange(cvt_image,yellow_lower,yellow_upper)
+    # white mask
+    white_lower = np.array([0,200,0])
+    white_upper = np.array([255,255,255])
+    white_mask = cv2.inRange(cvt_image,white_lower,white_upper)
+    # combine mask
+    mask = cv2.bitwise_or(yellow_mask,white_mask)
+    return cv2.bitwise_and(image,image,mask=mask)
+
 
 def ROI(img):
     h,w = img.shape[:2]
