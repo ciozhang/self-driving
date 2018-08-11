@@ -30,7 +30,7 @@ def select_line_color(image):
     white_mask = cv2.inRange(cvt_image,white_lower,white_upper)
     # combine mask
     mask = cv2.bitwise_or(yellow_mask,white_mask)
-    return cv2.bitwise_and(image,image,mask=mask)
+    return cv2.bitwise_and(image,image,mask=yellow_mask)
 
 def select_line_color2(image):
     cvt_image = cv2.cvtColor(image,cv2.COLOR_BGR2HLS) # h l s
@@ -44,7 +44,7 @@ def select_line_color2(image):
     white_mask = cv2.inRange(cvt_image,white_lower,white_upper)
     # combine mask
     mask = cv2.bitwise_or(yellow_mask,white_mask)
-    return cv2.bitwise_and(image,image,mask=mask)
+    return cv2.bitwise_and(image,image,mask=yellow_mask)
 
 
 def ROI(img):
@@ -61,3 +61,11 @@ def clean(img,min_sz):
     cleaned = morphology.remove_small_objects(img.astype('bool'),min_size=min_sz,connectivity=2)
     return cleaned
 
+
+def find_lines_by_sliding_windows(binary_img, n_windows=10):
+    '''
+    input: binary image
+    '''
+    h,w=binary_img[0][1]
+    base_histogram=np.sum(binary_img[h*(n_windows-1)/n_windows:, :], axis=0)
+    
